@@ -60,7 +60,6 @@ if(wordLetters.includes(guessLetter) && index.length > 1) {
     console.log('Woohoo!')
 secretArray.splice(index1,1,guessLetter)
 secretArray.splice(index2,1,guessLetter)
-console.log(secretArray)
 
 let answer = secretArray.join('').toUpperCase();
 secret.innerHTML = answer;
@@ -71,7 +70,7 @@ checkIfWon(key);
 
 } else if(wordLetters.includes(guessLetter) && index.length === 1) {
     secretArray.splice(index1,1,guessLetter)
-    console.log(secretArray)
+   
 
 
     let formattedAnswer = secretArray.join('').toUpperCase();
@@ -102,7 +101,7 @@ function showMan(){
     
     nextMan.classList.add('active')
     nextMan.classList.remove('hidden')
-    console.log(nextMan)
+    
 
     if(currentMan === lastMan) {
         secret.innerHTML = `AHH BUMMER MAN YOU LOOSE <br/> The word was: ${word.toLocaleUpperCase()}` 
@@ -123,7 +122,6 @@ function checkIfWon(key) {
 
 // event listeners
 window.addEventListener('keyup', e => {
-    console.log(e.key);
     let guessLetter = e.key;
     checkGuess(guessLetter);
   })
