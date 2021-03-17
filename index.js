@@ -1,25 +1,44 @@
 const secret = document.querySelector('.answer')
 const bank = document.querySelector('.bank')
 const lastMan = document.querySelector('img.last');
+const randomWords = ['wolf', 'cat', 'kazoo', 'zipper', 'orange','lizard','blue','dog','house','cake','pillow', 'book','frog']
 let currentMan;
-const randomWords = ['wolf', 'cat', 'kazoo', 'zipper', 'orange','lizard']
 let array = [];
+let lastNumber; // random number memory 
 
-//TODO make it so you can't get the same random word twice in a row
 
 
 
 // generate random word
-let randomNumber = Math.floor(Math.random() * (randomWords.length - 1) + 1);
-let word = randomWords[randomNumber];
-console.log(word)
+// let randomNumber = Math.floor(Math.random() * (randomWords.length - 1) + 1);
+// let word = randomWords[randomNumber];
+// console.log(word)
 
+
+
+function getRandNumber() {
+    let randomNumber = Math.floor(Math.random() * (randomWords.length - 1) + 1);
+
+    if (randomNumber === lastNumber) { // compare with last number
+       getRandNumber()
+    } else {
+        return randomNumber
+       
+    }
+    lastNumber = randomNumber
+  }
+
+  
+
+
+
+let word = randomWords[getRandNumber()];
+console.log(word)
 // generate and display secret word for user
-let secretWord = word.replaceAll(/./g, '*');
+let secretWord = word.replaceAll(/./g, '_');
 // display word in html
 secret.innerHTML = secretWord;
 let secretArray = secretWord.split('');
-
 let wordLetters = word.split('');
 
 
@@ -103,7 +122,6 @@ function checkIfWon(key) {
 
 
 // event listeners
-
 window.addEventListener('keyup', e => {
     console.log(e.key);
     let guessLetter = e.key;
@@ -114,8 +132,6 @@ window.addEventListener('keyup', e => {
 
 
 
-// TODO 
-// TODO handle win/ loose
-// TODO format word to guess _ _ _ _ .map 
+
 // TODO make it so you can only guess letters and only guess each letter once
 
