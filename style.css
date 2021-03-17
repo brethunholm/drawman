@@ -53,7 +53,7 @@ body {
     justify-content: flex-end;
     align-items: center;
     text-align: center;
-    letter-spacing: 7px;
+    letter-spacing: 5px;
 }
 
 
@@ -65,6 +65,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    letter-spacing: 3px;
 }
  
 .letters h2 {
