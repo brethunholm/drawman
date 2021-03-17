@@ -2,7 +2,7 @@ const secret = document.querySelector('.answer')
 const bank = document.querySelector('.bank')
 const lastMan = document.querySelector('img.last');
 let currentMan;
-const randomWords = ['jackpot', 'juicy', 'kazoo', 'zipper', 'banjo','microwave']
+const randomWords = ['wolf', 'cat', 'kazoo', 'zipper', 'orange','lizard']
 let array = [];
 
 //TODO make it so you can't get the same random word twice in a row
@@ -23,13 +23,8 @@ let secretArray = secretWord.split('');
 let wordLetters = word.split('');
 
 
-
-
 function checkGuess(guessLetter) {
-
-guessLetter = guessLetter.toLowerCase();
-console.log(guessLetter)
-    
+// guessLetter = guessLetter.toLowerCase();
 
 let index = []
 for (let i = 0; i < wordLetters.length; i++) {
@@ -37,7 +32,6 @@ for (let i = 0; i < wordLetters.length; i++) {
         index.push(i)
     }
 }
-
 
 let index1 = index[0];
 let index2 = index[1];
@@ -52,14 +46,20 @@ console.log(secretArray)
 let answer = secretArray.join('').toUpperCase();
 secret.innerHTML = answer;
 
+let key =  secretArray.join('');
+checkIfWon(key);
 
 
 } else if(wordLetters.includes(guessLetter) && index.length === 1) {
     secretArray.splice(index1,1,guessLetter)
     console.log(secretArray)
 
-    let answer = secretArray.join('').toUpperCase();
-    secret.innerHTML = answer;
+
+    let formattedAnswer = secretArray.join('').toUpperCase();
+    secret.innerHTML = formattedAnswer;
+
+    let key =  secretArray.join('');
+    checkIfWon(key);
     
 
     } else {
@@ -76,7 +76,6 @@ secret.innerHTML = answer;
 function showMan(){
     currentMan = document.querySelector('img.active');
    
-    console.log(currentMan)
     currentMan.classList.add('hidden');
     currentMan.classList.remove('active');
 
@@ -87,22 +86,18 @@ function showMan(){
     console.log(nextMan)
 
     if(currentMan === lastMan) {
-        alert('You loose!')
-        console.log('you loose')
+        secret.innerHTML = `AHH BUMMER MAN YOU LOOSE <br/> The word was: ${word.toLocaleUpperCase()}` 
+        setTimeout(function(){location.reload();}, 4000 );
     }
     
 }
 
-function isGameOver(answer) {
-    if(currentMan === lastMan) {
-        alert('GAME OVER loose')
-
-    } else if(answer === finalWord) {
-        console.log('You win!')
-        alert('You win')
-    } else {
-        return
-    }
+function checkIfWon(key) {
+    if (key === word) {
+        console.log('you win')
+        secret.innerHTML=`${word.toUpperCase()}: WOOHOOO YOU WIN`
+        setTimeout(function(){location.reload();}, 4000 );
+    } 
 }
 
 
