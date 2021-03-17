@@ -1,3 +1,8 @@
+*{ 
+    box-sizing: border-box;
+}
+
+
 .wrapper {
     background-image: url('./images/background.jpg');
     background-repeat: no-repeat;
@@ -57,11 +62,12 @@
 
 .answer {
     /* border: 2px solid red; */
-    font-size: 50px;
+    font-size: 30px;
     flex: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    text-align: center;
 }
 
 
